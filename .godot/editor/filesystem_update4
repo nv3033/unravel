@@ -1,0 +1,6 @@
+res://scenes/test.tscn
+res://models/weapons/bullets/pistol_bullet.tscn
+res://scenes/location1.tscn
+res://models/locations/location_1_inherit.tscn
+res://scripts/character.gd
+res://scripts/dialogue.gd
