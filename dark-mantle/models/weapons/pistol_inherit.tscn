@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://b265jusv8n6ia"]
+
+[ext_resource type="PackedScene" uid="uid://crsu04gtcgxx7" path="res://models/weapons/Pistol.fbx" id="1_g47fx"]
+[ext_resource type="Texture2D" uid="uid://d0xcx33r0vwtc" path="res://models/weapons/Pistol_Material_AlbedoTransparency.png" id="2_68o38"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_osc4c"]
+albedo_texture = ExtResource("2_68o38")
+metallic = 0.15
+texture_filter = 0
+
+[node name="Pistol" instance=ExtResource("1_g47fx")]
+
+[node name="Cube" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_osc4c")

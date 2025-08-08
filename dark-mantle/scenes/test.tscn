@@ -1,0 +1,131 @@
+[gd_scene load_steps=17 format=3 uid="uid://bkoybwexwxtou"]
+
+[ext_resource type="Script" uid="uid://q8rg2ica6m8b" path="res://scripts/character.gd" id="1_errlg"]
+[ext_resource type="PackedScene" uid="uid://b265jusv8n6ia" path="res://models/weapons/pistol_inherit.tscn" id="1_iyx0m"]
+[ext_resource type="PackedScene" uid="uid://c6t8x85an2c0r" path="res://models/props/barrel.tscn" id="2_bl13t"]
+[ext_resource type="PackedScene" uid="uid://bb7lwvpr1lrle" path="res://models/weapons/bullets/pistol_bullet.tscn" id="4_j5jx5"]
+[ext_resource type="Script" uid="uid://4pw2yhqgivae" path="res://scripts/pistol_bullet.gd" id="5_lpvoh"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_errlg"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_bl13t"]
+sky_material = SubResource("ProceduralSkyMaterial_errlg")
+
+[sub_resource type="Environment" id="Environment_iyx0m"]
+background_mode = 2
+sky = SubResource("Sky_bl13t")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ij1v8"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_errlg"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bl13t"]
+albedo_color = Color(0.147672, 0.147672, 0.147672, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_iyx0m"]
+
+[sub_resource type="Animation" id="Animation_74lek"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_iyx0m"]
+resource_name = "fire"
+length = 0.5
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.694065, 0.127269, -0.703614, 0.0666667, 1, 0.768851, 0.127269, -0.264527, 0.5, 1, 0.694065, 0.127269, -0.703614)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 1, 0, 0, 0.133333, 1, 0, 0.924, 0.383, 0, 0.497177, 1, 0, 1, 0, 0)
+
+[sub_resource type="Animation" id="Animation_j5jx5"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.694065, 0.127269, -0.703614)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 1, 0, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j5jx5"]
+_data = {
+&"RESET": SubResource("Animation_74lek"),
+&"fire": SubResource("Animation_iyx0m"),
+&"idle": SubResource("Animation_j5jx5")
+}
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0274599, 0.0124511, 0.0170531)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_iyx0m")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.67759, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_ij1v8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_errlg")
+surface_material_override/0 = SubResource("StandardMaterial3D_bl13t")
+
+[node name="barrel" parent="." instance=ExtResource("2_bl13t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.68422, -4.80769, -0.00194836)
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+script = ExtResource("1_errlg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_iyx0m")
+
+[node name="Pistol" parent="CharacterBody3D" instance=ExtResource("1_iyx0m")]
+transform = Transform3D(0.0762152, 0, 0, 0, 0.0762152, 0, 0, 0, 0.0762152, 0.694065, 0.623603, -0.703614)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody3D/Pistol"]
+libraries = {
+&"": SubResource("AnimationLibrary_j5jx5")
+}
+autoplay = "idle"
+
+[node name="Camera" type="Camera3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.496334, 0)
+
+[node name="Spawner" type="Node3D" parent="CharacterBody3D"]
+
+[node name="pistol_bullet" parent="." instance=ExtResource("4_j5jx5")]
+transform = Transform3D(-2.02308e-09, -0.0462826, 0, 0.0462826, -2.02308e-09, 0, 0, 0, 0.0462826, -1.25545, -1.08901, 0.468441)
+script = ExtResource("5_lpvoh")

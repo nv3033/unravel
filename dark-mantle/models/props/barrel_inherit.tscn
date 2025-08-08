@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://vtpkkd36nkfc"]
+
+[ext_resource type="PackedScene" uid="uid://bgjubo4y2hicf" path="res://models/props/Barrel.fbx" id="1_yggy2"]
+[ext_resource type="Texture2D" uid="uid://dwoh55etk1rwv" path="res://models/props/Barrel_DefaultMaterial_AlbedoTransparency.png" id="2_1k3k7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gcp8r"]
+albedo_texture = ExtResource("2_1k3k7")
+texture_filter = 0
+
+[node name="Barrel" instance=ExtResource("1_yggy2")]
+
+[node name="Barrel" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gcp8r")

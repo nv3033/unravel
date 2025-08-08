@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://cggi7ixymn13b"]
+
+[ext_resource type="PackedScene" uid="uid://cue114ukpxt83" path="res://models/props/torch.fbx" id="1_dir0n"]
+
+[sub_resource type="Gradient" id="Gradient_dir0n"]
+colors = PackedColorArray(0, 0, 0, 1, 0.866883, 0.685106, 0.583172, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_cj82r"]
+frequency = 0.1538
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vrotj"]
+width = 64
+height = 64
+color_ramp = SubResource("Gradient_dir0n")
+noise = SubResource("FastNoiseLite_cj82r")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c7mgk"]
+albedo_texture = SubResource("NoiseTexture2D_vrotj")
+texture_filter = 0
+
+[node name="torch" instance=ExtResource("1_dir0n")]
+
+[node name="Cube" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_c7mgk")

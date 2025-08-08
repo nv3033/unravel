@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://bb7lwvpr1lrle"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_iyx0m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_74lek"]
+albedo_color = Color(0.0923971, 0.0923971, 0.0923971, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_j5jx5"]
+direction = Vector3(0, 1, 0)
+spread = 7.165
+initial_velocity_max = 18.58
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 10.53
+linear_accel_max = 29.72
+scale_min = 0.1
+scale_max = 3.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lpvoh"]
+albedo_color = Color(0.2484, 0.2484, 0.2484, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_at5dv"]
+material = SubResource("StandardMaterial3D_lpvoh")
+size = Vector3(0.01, 0.01, 0.01)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jcd4p"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uacia"]
+albedo_color = Color(0.385493, 0.385492, 0.385492, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yk7ts"]
+material = SubResource("StandardMaterial3D_uacia")
+
+[node name="pistol_bullet" type="StaticBody3D"]
+transform = Transform3D(-2.02308e-09, -0.0462826, 0, 0.0462826, -2.02308e-09, 0, 0, 0, 0.0462826, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_iyx0m")
+surface_material_override/0 = SubResource("StandardMaterial3D_74lek")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 1.06581e-14, 0, -1.06581e-14, 1, 0, 0, 0, 1, 0, 0, 0)
+process_material = SubResource("ParticleProcessMaterial_j5jx5")
+draw_pass_1 = SubResource("BoxMesh_at5dv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_jcd4p")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+visible = false
+mesh = SubResource("BoxMesh_yk7ts")
+scale_amount_min = 0.01
+scale_amount_max = 0.05

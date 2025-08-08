@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7jxxggbvd338"]
+
+[ext_resource type="PackedScene" uid="uid://ccqall2nxo3lm" path="res://models/locations/location1.fbx" id="1_681jw"]
+
+[sub_resource type="Gradient" id="Gradient_681jw"]
+offsets = PackedFloat32Array(0.313653, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.273053, 0.137261, 4.81308e-08, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6whc7"]
+noise_type = 3
+frequency = 0.1538
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ubptw"]
+width = 256
+height = 256
+color_ramp = SubResource("Gradient_681jw")
+noise = SubResource("FastNoiseLite_6whc7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e3t6l"]
+albedo_texture = SubResource("NoiseTexture2D_ubptw")
+texture_filter = 0
+
+[node name="location1" instance=ExtResource("1_681jw")]
+
+[node name="Plane" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_e3t6l")

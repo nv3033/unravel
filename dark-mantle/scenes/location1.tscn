@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://cla757yyykboq"]
+
+[ext_resource type="PackedScene" uid="uid://c7jxxggbvd338" path="res://models/locations/location_1_inherit.tscn" id="1_4w4rc"]
+[ext_resource type="PackedScene" uid="uid://dhd82tes52qow" path="res://models/props/grid_inherit.tscn" id="2_ci06i"]
+[ext_resource type="PackedScene" uid="uid://cggi7ixymn13b" path="res://models/props/torch_inherit.tscn" id="3_pg7qd"]
+[ext_resource type="PackedScene" uid="uid://benpu3ddnejsy" path="res://models/props/box_inherit.tscn" id="4_ra0mo"]
+[ext_resource type="PackedScene" uid="uid://dnhhh2s7rm61" path="res://models/props/switch_inherit.tscn" id="5_68v0g"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="location1" parent="." instance=ExtResource("1_4w4rc")]
+
+[node name="grid" parent="." instance=ExtResource("2_ci06i")]
+transform = Transform3D(-0.0987381, 0, 0.658862, 0, 0.66622, 0, -0.658862, 0, -0.0987381, -4.62675, 0.80392, 1.07959)
+
+[node name="torch" parent="." instance=ExtResource("3_pg7qd")]
+transform = Transform3D(-2.93873e-09, 3.49694e-10, -0.0677046, 0.00800006, 0.0672302, 0, 0.0672302, -0.00800006, -2.95946e-09, -12.1957, 0.786815, 3.84248)
+
+[node name="torch2" parent="." instance=ExtResource("3_pg7qd")]
+transform = Transform3D(-2.93873e-09, 3.49694e-10, -0.0677046, 0.00800006, 0.0672302, 0, 0.0672302, -0.00800006, -2.95946e-09, -7.96425, 0.794479, 0.894972)
+
+[node name="torch3" parent="." instance=ExtResource("3_pg7qd")]
+transform = Transform3D(-2.93873e-09, 3.49694e-10, -0.0677046, 0.00800006, 0.0672302, 0, 0.0672302, -0.00800006, -2.95946e-09, -2.97653, 0.958167, 4.9113)
+
+[node name="Box" parent="." instance=ExtResource("4_ra0mo")]
+transform = Transform3D(0.01948, 0, 0, 0, 0.01948, 0, 0, 0, 0.01948, -2.06273, -0.0185455, 0.577964)
+
+[node name="Box2" parent="." instance=ExtResource("4_ra0mo")]
+transform = Transform3D(0.0142703, 0, 0, 0, 0.0142703, 0, 0, 0, 0.0142703, -1.76539, -0.0517677, 0.545391)
+
+[node name="Box3" parent="." instance=ExtResource("4_ra0mo")]
+transform = Transform3D(0.0181654, 0, 0, 0, 0.0181654, 0, 0, 0, 0.0181654, -15.1027, 0, -1.5259)
+
+[node name="Box4" parent="." instance=ExtResource("4_ra0mo")]
+transform = Transform3D(0.0124068, 0, 0, 0, 0.0124068, 0, 0, 0, 0.0124068, -14.891, 0, -1.68754)
+
+[node name="Box5" parent="." instance=ExtResource("4_ra0mo")]
+transform = Transform3D(0.0124068, 0, 0, 0, 0.0124068, 0, 0, 0, 0.0124068, -15.1199, 0, -1.30469)
+
+[node name="switch" parent="." instance=ExtResource("5_68v0g")]
+transform = Transform3D(-0.0953121, 0, 8.33245e-09, 0, 0.0953121, 0, -8.33245e-09, 0, -0.0953121, -14.3343, 0.956276, 3.86637)
