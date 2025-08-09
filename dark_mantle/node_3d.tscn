@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://csxioh4j0vxfx"]
+
+[ext_resource type="Script" uid="uid://0607iifkfmsp" path="res://scripts/character_body_3d.gd" id="2_a0tk4"]
+[ext_resource type="PackedScene" uid="uid://cve60paqjepm0" path="res://models/locations/location_1_inherit.tscn" id="2_noarx"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r3fl7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_noarx"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_a0tk4"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(0.609799, 0, 0, 0, 0.609799, 0, 0, 0, 0.609799, -0.282288, -0.029785, 9.67626)
+script = ExtResource("2_a0tk4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_r3fl7")
+
+[node name="Camera_pivot" type="Node3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.022974, -9.53674e-07, -0.0122929)
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Camera_pivot"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.8542, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(17.0742, 0, 0, 0, 1, 0, 0, 0, 20.6834, 0, 0, 0)
+shape = SubResource("BoxShape3D_noarx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(17.0742, 0, 0, 0, 1, 0, 0, 0, 20.6834, 0, 0, 0)
+mesh = SubResource("BoxMesh_a0tk4")
+
+[node name="location1" parent="." instance=ExtResource("2_noarx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.324565, 0, 1.06603)
