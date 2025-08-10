@@ -42,9 +42,10 @@ func _physics_process(delta):
  var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
  # Рассчитываем скорость
- velocity.y = -1
- velocity.x = direction.x * speed
- velocity.z = direction.z * speed
+ if can_move == true:
+  velocity.y = -1
+  velocity.x = direction.x * speed
+  velocity.z = direction.z * speed
  move_and_slide()
 
  # Камера трясется при движении

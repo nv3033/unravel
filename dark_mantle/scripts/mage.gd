@@ -1,4 +1,4 @@
 extends Node3D
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	look_at($"../CharacterBody3D".position)

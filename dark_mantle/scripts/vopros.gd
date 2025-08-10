@@ -10,11 +10,11 @@ extends Node3D
 @onready var background = $"../CharacterBody3D/Camera_pivot/Control/CanvasLayer/ColorRect"
 @onready var text_label = $"../CharacterBody3D/Camera_pivot/Control/CanvasLayer/RichTextLabel"
 @onready var player = $"../CharacterBody3D"
-@export var print_speed = 1
+@export var print_speed = 0.1
 @onready var output_in_work = false
 
 func _ready() -> void:
-	scale = Vector3(0, 0, 0)
+	scale = Vector3(0.01, 0.01, 0.01)
 
 func _process(delta):
 	rotate_y(deg_to_rad(rotation_speed * delta))
@@ -34,15 +34,16 @@ func _unhandled_input(event: InputEvent) -> void:
 			background.visible = false
 			text_label.visible = false
 			player.can_move = true
+			page = -1
 		else:	
 			show_text(data[page])
 		page += 1
 		
 
-func show_text(str: String):
+func show_text(text_string: String):
 	output_in_work = true
 	text_label.text = ""
-	for i in str:
+	for i in text_string:
 		text_label.text += i
 		await get_tree().create_timer(print_speed).timeout
 	output_in_work = false

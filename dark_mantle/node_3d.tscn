@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://csxioh4j0vxfx"]
+[gd_scene load_steps=25 format=3 uid="uid://csxioh4j0vxfx"]
 
 [ext_resource type="PackedScene" uid="uid://giw5pn0x48sd" path="res://shaders/main_shader.tscn" id="1_4arys"]
 [ext_resource type="Script" uid="uid://0607iifkfmsp" path="res://scripts/character_body_3d.gd" id="2_a0tk4"]
@@ -12,6 +12,20 @@
 [ext_resource type="Script" uid="uid://bk7c5dmoqmv77" path="res://scripts/mage.gd" id="6_i5arm"]
 [ext_resource type="PackedScene" uid="uid://byotxdv0mmkbl" path="res://models/props/box_inherit.tscn" id="7_wc5p8"]
 [ext_resource type="PackedScene" uid="uid://bvv4jjj8ovgtb" path="res://models/props/torch_inherit.tscn" id="8_jsk3o"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cdqbm"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+energy_multiplier = 0.1
+
+[sub_resource type="Sky" id="Sky_imku0"]
+sky_material = SubResource("ProceduralSkyMaterial_cdqbm")
+
+[sub_resource type="Environment" id="Environment_wlxy5"]
+background_mode = 2
+sky = SubResource("Sky_imku0")
+tonemap_mode = 2
+glow_enabled = true
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_tereu"]
 
@@ -58,6 +72,9 @@ radius = 27.6063
 height = 60.6225
 
 [node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wlxy5")
 
 [node name="vopros" parent="." instance=ExtResource("4_6iypd")]
 transform = Transform3D(0.397942, 0, 0, 0, 0.397942, 0, 0, 0, 0.397942, 12.4875, -0.50606, -21.3945)
