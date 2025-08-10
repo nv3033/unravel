@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://bysswweor105n"]
+
+[ext_resource type="PackedScene" uid="uid://p5w0wcgehu1k" path="res://models/characters/mage.fbx" id="1_b1rj5"]
+[ext_resource type="Texture2D" uid="uid://sat0ckrsw4sm" path="res://models/characters/MageMerged2_Mage_AlbedoTransparency.png" id="2_uoavt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_du0ng"]
+albedo_texture = ExtResource("2_uoavt")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fdqk1"]
+albedo_texture = ExtResource("2_uoavt")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2kuah"]
+albedo_texture = ExtResource("2_uoavt")
+texture_filter = 0
+
+[node name="mage" instance=ExtResource("1_b1rj5")]
+
+[node name="Cape" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_du0ng")
+
+[node name="Head" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_fdqk1")
+
+[node name="Hands" parent="." index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_2kuah")
+
+[node name="Sun" parent="." index="3"]
+visible = false

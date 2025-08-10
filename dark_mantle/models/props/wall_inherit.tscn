@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://bq73b4scjh410"]
+
+[ext_resource type="PackedScene" uid="uid://dyeevck28ox7p" path="res://models/props/wall.fbx" id="1_81o5h"]
+[ext_resource type="Texture2D" uid="uid://71x5l3w0atw2" path="res://models/locations/black-stacked-stones.jpg" id="2_ncoc1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y6lne"]
+albedo_texture = ExtResource("2_ncoc1")
+texture_filter = 0
+
+[node name="wall" instance=ExtResource("1_81o5h")]
+
+[node name="Cube" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_y6lne")

@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://bom61eiklold1"]
+
+[ext_resource type="PackedScene" uid="uid://k6dqfcdgefl2" path="res://models/props/vopros.fbx" id="1_mx057"]
+
+[node name="vopros" instance=ExtResource("1_mx057")]
+
+[node name="Cube" parent="." index="0"]
+transform = Transform3D(5.66582, 0, 0, 0, 0, 5.66582, 0, -5.66582, 0, 0, -0.176947, 0)
+
+[node name="Cube_001" parent="." index="1"]
+transform = Transform3D(5.66582, 0, 0, 0, 0, 5.66582, 0, -5.66582, 0, 0, -0.0281522, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.679069, 0)
+omni_range = 2.55151
+
+[node name="Camera3D" type="Camera3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.393107, 0.954887)

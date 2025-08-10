@@ -1,19 +1,80 @@
-[gd_scene load_steps=6 format=3 uid="uid://csxioh4j0vxfx"]
+[gd_scene load_steps=22 format=3 uid="uid://csxioh4j0vxfx"]
 
+[ext_resource type="PackedScene" uid="uid://giw5pn0x48sd" path="res://shaders/main_shader.tscn" id="1_4arys"]
 [ext_resource type="Script" uid="uid://0607iifkfmsp" path="res://scripts/character_body_3d.gd" id="2_a0tk4"]
+[ext_resource type="Script" uid="uid://gsgwy5wubcdj" path="res://scripts/vopros.gd" id="2_cdqbm"]
 [ext_resource type="PackedScene" uid="uid://cve60paqjepm0" path="res://models/locations/location_1_inherit.tscn" id="2_noarx"]
+[ext_resource type="PackedScene" uid="uid://booto4tcu0d2" path="res://models/weapons/cross_inherit.tscn" id="2_r3fl7"]
+[ext_resource type="PackedScene" uid="uid://bom61eiklold1" path="res://models/props/vopros_inherit.tscn" id="4_6iypd"]
+[ext_resource type="PackedScene" uid="uid://bq73b4scjh410" path="res://models/props/wall_inherit.tscn" id="4_r3fl7"]
+[ext_resource type="FontFile" uid="uid://c1s73ha53i2pj" path="res://fonts/arcadeclassic/ARCADECLASSIC.TTF" id="5_cdqbm"]
+[ext_resource type="PackedScene" uid="uid://bysswweor105n" path="res://models/characters/mage_inherit.tscn" id="5_jka67"]
+[ext_resource type="Script" uid="uid://bk7c5dmoqmv77" path="res://scripts/mage.gd" id="6_i5arm"]
+[ext_resource type="PackedScene" uid="uid://byotxdv0mmkbl" path="res://models/props/box_inherit.tscn" id="7_wc5p8"]
+[ext_resource type="PackedScene" uid="uid://bvv4jjj8ovgtb" path="res://models/props/torch_inherit.tscn" id="8_jsk3o"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tereu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r3fl7"]
+
+[sub_resource type="Theme" id="Theme_imku0"]
+default_font = ExtResource("5_cdqbm")
+default_font_size = 65
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_noarx"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_a0tk4"]
 
+[sub_resource type="Animation" id="Animation_jsk3o"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 12.6477, -0.986667, -22.0524)
+
+[sub_resource type="Animation" id="Animation_wc5p8"]
+resource_name = "new_animation"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 12.6477, -0.986667, -22.0524, 1, 1, 12.648, -0.941, -22.052, 2, 1, 12.6477, -0.986667, -22.0524)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4arys"]
+_data = {
+&"RESET": SubResource("Animation_jsk3o"),
+&"new_animation": SubResource("Animation_wc5p8")
+}
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i5arm"]
+radius = 27.6063
+height = 60.6225
+
 [node name="Node3D" type="Node3D"]
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+[node name="vopros" parent="." instance=ExtResource("4_6iypd")]
+transform = Transform3D(0.397942, 0, 0, 0, 0.397942, 0, 0, 0, 0.397942, 12.4875, -0.50606, -21.3945)
+script = ExtResource("2_cdqbm")
+
+[node name="Area3D2" type="Area3D" parent="vopros"]
+transform = Transform3D(2.06746, 0, 0, 0, 2.06746, 0, 0, 0, 2.06746, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="vopros/Area3D2"]
+transform = Transform3D(1.88642, 0, 0, 0, 1.88642, 0, 0, 0, 1.88642, 0, 0, 0)
+shape = SubResource("SphereShape3D_tereu")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." groups=["player"]]
 transform = Transform3D(0.609799, 0, 0, 0, 0.609799, 0, 0, 0, 0.609799, -0.282288, -0.029785, 9.67626)
 script = ExtResource("2_a0tk4")
+speed = 2.0
+camera_shake_amplitude = 0.05
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 shape = SubResource("CapsuleShape3D_r3fl7")
@@ -21,7 +82,48 @@ shape = SubResource("CapsuleShape3D_r3fl7")
 [node name="Camera_pivot" type="Node3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.022974, -9.53674e-07, -0.0122929)
 
+[node name="OmniLight3D" type="OmniLight3D" parent="CharacterBody3D/Camera_pivot"]
+transform = Transform3D(1.63988, 0, 0, 0, 1.63988, 0, 0, 0, 1.63988, 0, 0, 0)
+light_energy = 0.138
+
+[node name="cross" parent="CharacterBody3D/Camera_pivot" instance=ExtResource("2_r3fl7")]
+transform = Transform3D(0.0460547, 0.00997925, 1.71589e-17, -0.00982157, 0.045327, 0.00834403, 0.001767, -0.00815479, 0.0463788, 0.181562, -0.225452, -0.370837)
+
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Camera_pivot"]
+transform = Transform3D(1.63988, 0, 0, 0, 1.63988, 0, 0, 0, 1.63988, 8.04663e-07, -2.98023e-08, -6.67572e-06)
+current = true
+
+[node name="Control" type="Control" parent="CharacterBody3D/Camera_pivot"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="CharacterBody3D/Camera_pivot/Control"]
+
+[node name="ColorRect" type="ColorRect" parent="CharacterBody3D/Camera_pivot/Control/CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CharacterBody3D/Camera_pivot/Control/CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = SubResource("Theme_imku0")
+text = "esbdzddbdfnzdfnzdfndzn"
+fit_content = true
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.8542, 0)
@@ -34,5 +136,41 @@ shape = SubResource("BoxShape3D_noarx")
 transform = Transform3D(17.0742, 0, 0, 0, 1, 0, 0, 0, 20.6834, 0, 0, 0)
 mesh = SubResource("BoxMesh_a0tk4")
 
+[node name="main_shader" parent="." instance=ExtResource("1_4arys")]
+
 [node name="location1" parent="." instance=ExtResource("2_noarx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.324565, 0, 1.06603)
+
+[node name="wall" parent="." instance=ExtResource("4_r3fl7")]
+transform = Transform3D(0.324153, 0, 0, 0, 0.324153, 0, 0, 0, 0.324153, -2.01241, 0.0720977, -11.0372)
+
+[node name="mage" parent="." instance=ExtResource("5_jka67")]
+transform = Transform3D(0.0210504, 0, 0, 0, 0.0210504, 0, 0, 0, 0.0210504, 12.6477, -0.986667, -22.0524)
+script = ExtResource("6_i5arm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="mage"]
+libraries = {
+&"": SubResource("AnimationLibrary_4arys")
+}
+autoplay = "new_animation"
+
+[node name="StaticBody3D" type="StaticBody3D" parent="mage"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="mage/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.5077, 0)
+shape = SubResource("CapsuleShape3D_i5arm")
+
+[node name="Box" parent="." instance=ExtResource("7_wc5p8")]
+transform = Transform3D(0.0280858, -0.00266676, 0, 0.00266676, 0.0280858, 0, 0, 0, 0.0282121, -1.0338, -1.07443, 5.6815)
+
+[node name="Box2" parent="." instance=ExtResource("7_wc5p8")]
+transform = Transform3D(0.0177071, 0.00255667, 0, -0.00255667, 0.0177071, 0, 0, 0, 0.0178907, -0.908149, -1.10285, 6.04854)
+
+[node name="Box3" parent="." instance=ExtResource("7_wc5p8")]
+transform = Transform3D(0.027441, -0.00655103, 0, 0.00655103, 0.027441, 0, 0, 0, 0.0282121, 0.571291, -0.98915, 3.24339)
+
+[node name="torch" parent="." instance=ExtResource("8_jsk3o")]
+transform = Transform3D(0.054416, 0.0167104, 0, -0.0167104, 0.054416, 0, 0, 0, 0.0569239, -1.29594, 0.136436, 4.83131)
+
+[connection signal="body_entered" from="vopros/Area3D2" to="vopros" method="_on_area_3d_2_body_entered"]
+[connection signal="body_exited" from="vopros/Area3D2" to="vopros" method="_on_area_3d_2_body_exited"]

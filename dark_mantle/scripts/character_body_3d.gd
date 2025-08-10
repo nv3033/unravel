@@ -6,11 +6,12 @@ extends CharacterBody3D
 @export var camera_shake_frequency = 10.0
 @export var camera_shake_offset = 0.0
 @onready var camera_pivot = $Camera_pivot
+@onready var can_move = true
 #var velocity = Vector3.ZERO
 var is_moving = false
 
 func _ready():
- Input.mouse_mode = Input.MOUSE_MODE_CAPTURED  # Захватываем мышь
+  Input.mouse_mode = Input.MOUSE_MODE_CAPTURED  # Захватываем мышь
 
 func _unhandled_input(event):
  if event is InputEventMouseMotion:
@@ -41,13 +42,9 @@ func _physics_process(delta):
  var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
  # Рассчитываем скорость
+ velocity.y = -1
  velocity.x = direction.x * speed
  velocity.z = direction.z * speed
-
- # Применяем гравитацию (если нужна)
- velocity.y = -1
-
- # Двигаем персонажа
  move_and_slide()
 
  # Камера трясется при движении

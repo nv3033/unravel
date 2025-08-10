@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://giw5pn0x48sd"]
+
+[ext_resource type="Shader" uid="uid://75sp4ssjgaer" path="res://shaders/main.gdshader" id="1_vxpba"]
+[ext_resource type="Shader" uid="uid://geq17hee5xyd" path="res://shaders/vhs.gdshader" id="2_j7vh2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t1qx2"]
+shader = ExtResource("1_vxpba")
+shader_parameter/shake = 0.015
+shader_parameter/noiseQuality = 250.0
+shader_parameter/noiseIntensity = 0.001
+shader_parameter/offsetIntensity = 0.0045
+shader_parameter/colorOffsetIntensity = 0.2
+shader_parameter/pixelSize = 234.1
+shader_parameter/grainIntensity = 0.04
+shader_parameter/use_overlay = true
+shader_parameter/use_lens_distortion = true
+shader_parameter/overlay_color = Color(1, 1, 1, 10)
+shader_parameter/lens_distortion_strength = 0.023
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6m3n3"]
+shader = ExtResource("2_j7vh2")
+shader_parameter/wiggle = 0.03
+shader_parameter/wiggle_speed = 25.0
+shader_parameter/smear = 1.0
+shader_parameter/blur_samples = 15
+
+[node name="main_shader" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="main" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_t1qx2")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="vhs" type="ColorRect" parent="CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_6m3n3")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

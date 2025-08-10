@@ -1,0 +1,81 @@
+[gd_scene load_steps=15 format=3 uid="uid://bvv4jjj8ovgtb"]
+
+[ext_resource type="PackedScene" uid="uid://b66ua5ghpa4ol" path="res://models/props/torch.fbx" id="1_dir0n"]
+[ext_resource type="Script" uid="uid://cdpco5uwaxdyo" path="res://scripts/torch_light.gd" id="2_cj82r"]
+
+[sub_resource type="Gradient" id="Gradient_cj82r"]
+colors = PackedColorArray(0, 0, 0, 1, 0.879158, 0.588001, 0.425854, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_vrotj"]
+frequency = 0.1086
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_c7mgk"]
+width = 32
+height = 32
+color_ramp = SubResource("Gradient_cj82r")
+noise = SubResource("FastNoiseLite_vrotj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4qc67"]
+albedo_texture = SubResource("NoiseTexture2D_c7mgk")
+texture_filter = 0
+
+[sub_resource type="Gradient" id="Gradient_j3gce"]
+offsets = PackedFloat32Array(0, 0.967391)
+colors = PackedColorArray(0, 0, 0, 1, 0.957981, 0.486177, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8bhxv"]
+frequency = 0.0177
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ylcp6"]
+width = 32
+height = 32
+color_ramp = SubResource("Gradient_j3gce")
+noise = SubResource("FastNoiseLite_8bhxv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kcid7"]
+albedo_texture = SubResource("NoiseTexture2D_ylcp6")
+texture_filter = 0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_eer8o"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(0, 0, 0)
+spread = 15.544
+gravity = Vector3(0, 1, 0)
+scale_min = 0.02
+scale_max = 0.05
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3fjqf"]
+albedo_color = Color(0.890649, 0.435345, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7g71i"]
+material = SubResource("StandardMaterial3D_3fjqf")
+
+[sub_resource type="Skin" id="Skin_te0xn"]
+
+[node name="torch" instance=ExtResource("1_dir0n")]
+transform = Transform3D(0.0569239, 0, 0, 0, 0.0569239, 0, 0, 0, 0.0569239, 0, 0, 0)
+script = ExtResource("2_cj82r")
+min_energy = 0.2
+max_energy = 1.0
+min_interval = 0.1
+max_interval = 0.5
+
+[node name="Cube" parent="." index="0"]
+transform = Transform3D(100, 0, 0, 0, 0, 300.054, 0, -100, 0, -0.00195789, 0.0145512, -0.00687075)
+surface_material_override/0 = SubResource("StandardMaterial3D_4qc67")
+
+[node name="Cube_001" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_kcid7")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0403185, 6.15266, 0.0429306)
+process_material = SubResource("ParticleProcessMaterial_eer8o")
+draw_pass_1 = SubResource("BoxMesh_7g71i")
+draw_skin = SubResource("Skin_te0xn")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="3"]
+transform = Transform3D(17.5673, 0, 0, 0, 17.5673, 0, 0, 0, 17.5673, -0.197129, 7.23479, 0.127216)
+light_color = Color(0.989288, 0.572067, 0.185534, 1)
+light_energy = 1.246
+omni_range = 6.789
