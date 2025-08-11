@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://2f5iotdltfac"]
+
+[ext_resource type="PackedScene" uid="uid://rp41t4bxsggx" path="res://models/props/switch.fbx" id="1_x88ea"]
+
+[sub_resource type="Gradient" id="Gradient_y4uu3"]
+colors = PackedColorArray(0, 0, 0, 1, 0.946608, 0.609736, 0.206816, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1l05s"]
+frequency = 0.2683
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_moeu6"]
+width = 32
+height = 32
+color_ramp = SubResource("Gradient_y4uu3")
+noise = SubResource("FastNoiseLite_1l05s")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3cslo"]
+albedo_texture = SubResource("NoiseTexture2D_moeu6")
+texture_filter = 0
+
+[node name="switch" instance=ExtResource("1_x88ea")]
+
+[node name="Cube" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_3cslo")
+
+[node name="Cube_001" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_3cslo")

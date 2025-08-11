@@ -1,8 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://csxioh4j0vxfx"]
+[gd_scene load_steps=27 format=3 uid="uid://csxioh4j0vxfx"]
 
 [ext_resource type="PackedScene" uid="uid://giw5pn0x48sd" path="res://shaders/main_shader.tscn" id="1_4arys"]
+[ext_resource type="PackedScene" uid="uid://dohcr30gitqc1" path="res://prefabs/vopros_dialogue.tscn" id="1_cdqbm"]
 [ext_resource type="Script" uid="uid://0607iifkfmsp" path="res://scripts/character_body_3d.gd" id="2_a0tk4"]
-[ext_resource type="Script" uid="uid://gsgwy5wubcdj" path="res://scripts/vopros.gd" id="2_cdqbm"]
 [ext_resource type="PackedScene" uid="uid://cve60paqjepm0" path="res://models/locations/location_1_inherit.tscn" id="2_noarx"]
 [ext_resource type="PackedScene" uid="uid://booto4tcu0d2" path="res://models/weapons/cross_inherit.tscn" id="2_r3fl7"]
 [ext_resource type="PackedScene" uid="uid://bom61eiklold1" path="res://models/props/vopros_inherit.tscn" id="4_6iypd"]
@@ -12,6 +12,8 @@
 [ext_resource type="Script" uid="uid://bk7c5dmoqmv77" path="res://scripts/mage.gd" id="6_i5arm"]
 [ext_resource type="PackedScene" uid="uid://byotxdv0mmkbl" path="res://models/props/box_inherit.tscn" id="7_wc5p8"]
 [ext_resource type="PackedScene" uid="uid://bvv4jjj8ovgtb" path="res://models/props/torch_inherit.tscn" id="8_jsk3o"]
+[ext_resource type="PackedScene" uid="uid://2f5iotdltfac" path="res://models/props/switch_inherit.tscn" id="13_imku0"]
+[ext_resource type="Script" uid="uid://g4pdxgygiec5" path="res://scripts/vopros_switch.gd" id="14_wlxy5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cdqbm"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -26,8 +28,6 @@ background_mode = 2
 sky = SubResource("Sky_imku0")
 tonemap_mode = 2
 glow_enabled = true
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_tereu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r3fl7"]
 
@@ -71,21 +71,16 @@ _data = {
 radius = 27.6063
 height = 60.6225
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_3v7ru"]
+size = Vector3(0.43573, 1, 3.53516)
+
 [node name="Node3D" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_wlxy5")
 
-[node name="vopros" parent="." instance=ExtResource("4_6iypd")]
+[node name="vopros_dialogue" parent="." instance=ExtResource("1_cdqbm")]
 transform = Transform3D(0.397942, 0, 0, 0, 0.397942, 0, 0, 0, 0.397942, 12.4875, -0.50606, -21.3945)
-script = ExtResource("2_cdqbm")
-
-[node name="Area3D2" type="Area3D" parent="vopros"]
-transform = Transform3D(2.06746, 0, 0, 0, 2.06746, 0, 0, 0, 2.06746, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="vopros/Area3D2"]
-transform = Transform3D(1.88642, 0, 0, 0, 1.88642, 0, 0, 0, 1.88642, 0, 0, 0)
-shape = SubResource("SphereShape3D_tereu")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." groups=["player"]]
 transform = Transform3D(0.609799, 0, 0, 0, 0.609799, 0, 0, 0, 0.609799, -0.282288, -0.029785, 9.67626)
@@ -189,5 +184,24 @@ transform = Transform3D(0.027441, -0.00655103, 0, 0.00655103, 0.027441, 0, 0, 0,
 [node name="torch" parent="." instance=ExtResource("8_jsk3o")]
 transform = Transform3D(0.054416, 0.0167104, 0, -0.0167104, 0.054416, 0, 0, 0, 0.0569239, -1.29594, 0.136436, 4.83131)
 
-[connection signal="body_entered" from="vopros/Area3D2" to="vopros" method="_on_area_3d_2_body_entered"]
-[connection signal="body_exited" from="vopros/Area3D2" to="vopros" method="_on_area_3d_2_body_exited"]
+[node name="switch" parent="." instance=ExtResource("13_imku0")]
+transform = Transform3D(0.0618779, 0, 0, 0, 0.0618779, 0, 0, 0, 0.0618779, 9.75831, -0.220868, -21.0075)
+
+[node name="torch2" parent="." instance=ExtResource("8_jsk3o")]
+transform = Transform3D(0.054416, 0.0167104, 0, -0.0167104, 0.054416, 0, 0, 0, 0.0569239, -1.25631, 0.136436, -17.6913)
+
+[node name="Box4" parent="." instance=ExtResource("7_wc5p8")]
+transform = Transform3D(0.0270383, 0.00805328, 0, -0.00805328, 0.0270383, 0, 0, 0, 0.0282121, 0.323919, -1.06466, -13.8282)
+
+[node name="vopros" parent="." instance=ExtResource("4_6iypd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.91343, -0.386585, -20.3735)
+script = ExtResource("14_wlxy5")
+
+[node name="Area3D" type="Area3D" parent="vopros"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="vopros/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0918884, 0, -0.65918)
+shape = SubResource("BoxShape3D_3v7ru")
+
+[connection signal="body_entered" from="vopros/Area3D" to="vopros" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="vopros/Area3D" to="vopros" method="_on_area_3d_body_exited"]
