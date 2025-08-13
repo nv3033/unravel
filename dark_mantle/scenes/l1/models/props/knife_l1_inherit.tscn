@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvr4b6nayvvk3"]
+
+[ext_resource type="PackedScene" uid="uid://bmgcydxw6864u" path="res://models/weapons/Knife.fbx" id="1_oa7bu"]
+[ext_resource type="Texture2D" uid="uid://d34bpfspfjdf4" path="res://models/weapons/Knife_Material.001_AlbedoTransparency.png" id="2_djbe4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uxfhv"]
+albedo_texture = ExtResource("2_djbe4")
+
+[node name="Knife" instance=ExtResource("1_oa7bu")]
+
+[node name="Cube_001" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_uxfhv")

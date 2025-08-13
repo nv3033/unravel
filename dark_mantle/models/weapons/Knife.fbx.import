@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bmgcydxw6864u"
-path="res://.godot/imported/Knife.fbx-40f5c4afbf4bf279904e78db25969c35.scn"
+path="res://.godot/imported/Knife.fbx-14a70fb8c109fa3ba6a4df47178e185b.scn"
 
 [deps]
 
-source_file="res://models/props/Knife.fbx"
-dest_files=["res://.godot/imported/Knife.fbx-40f5c4afbf4bf279904e78db25969c35.scn"]
+source_file="res://models/weapons/Knife.fbx"
+dest_files=["res://.godot/imported/Knife.fbx-14a70fb8c109fa3ba6a4df47178e185b.scn"]
 
 [params]
 

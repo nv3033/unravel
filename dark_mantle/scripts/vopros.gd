@@ -12,16 +12,19 @@ extends Node3D
 @onready var player = $"../CharacterBody3D"
 @export var print_speed = 0.1
 @onready var output_in_work = false
+@onready var ui = $ui
 
 func _ready() -> void:
 	scale = Vector3(0.01, 0.01, 0.01)
 
 func _process(delta):
-	rotate_y(deg_to_rad(rotation_speed * delta))
-	if player_near == true and scale.x < max_size:
-		scale = Vector3(scale.x+scale_speed, scale.y+scale_speed, scale.z+scale_speed)
-	if player_near == false and scale.x > 0:
-		scale = Vector3(scale.x-scale_speed, scale.y-scale_speed, scale.z-scale_speed)
+	#rotate_y(deg_to_rad(rotation_speed * delta))
+	if player_near == true:# and scale.x < max_size:
+		ui.visible = true
+		#scale = Vector3(scale.x+scale_speed, scale.y+scale_speed, scale.z+scale_speed)
+	if player_near == false:# and scale.x > 0:
+		ui.visible = false
+		#scale = Vector3(scale.x-scale_speed, scale.y-scale_speed, scale.z-scale_speed)
 		
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept") and output_in_work == false and player_near:

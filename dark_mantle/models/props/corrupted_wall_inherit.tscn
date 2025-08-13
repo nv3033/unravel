@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://d33svnuljmtri"]
+
+[ext_resource type="PackedScene" uid="uid://djnyvdibv1sun" path="res://models/props/corrupted wall.fbx" id="1_21nu8"]
+[ext_resource type="Texture2D" uid="uid://71x5l3w0atw2" path="res://models/locations/black-stacked-stones.jpg" id="2_31jcx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nuv73"]
+albedo_texture = ExtResource("2_31jcx")
+texture_filter = 0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_31jcx"]
+size = Vector3(0.0198975, 0.0200958, 0.001)
+
+[node name="corrupted wall" instance=ExtResource("1_21nu8")]
+
+[node name="Plane" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_nuv73")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Plane" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Plane/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.10352e-05, 7.63005e-06, -0.000286379)
+shape = SubResource("BoxShape3D_31jcx")

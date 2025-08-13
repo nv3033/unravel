@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=4 uid="uid://dohcr30gitqc1"]
+[gd_scene load_steps=10 format=4 uid="uid://dohcr30gitqc1"]
 
 [ext_resource type="Script" uid="uid://gsgwy5wubcdj" path="res://scripts/vopros.gd" id="1_tnjak"]
+[ext_resource type="FontFile" uid="uid://c1s73ha53i2pj" path="res://fonts/arcadeclassic/ARCADECLASSIC.TTF" id="2_qrf0h"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0pfd8"]
 resource_name = "Material"
@@ -93,13 +94,26 @@ script = ExtResource("1_tnjak")
 
 [node name="Cube" type="MeshInstance3D" parent="."]
 transform = Transform3D(5.66582, 0, 0, 0, 0, 5.66582, 0, -5.66582, 0, 0, -0.176947, 0)
+visible = false
 mesh = SubResource("ArrayMesh_j1e3m")
 skeleton = NodePath("")
 
 [node name="Cube_001" type="MeshInstance3D" parent="."]
 transform = Transform3D(5.66582, 0, 0, 0, 0, 5.66582, 0, -5.66582, 0, 0, -0.0281522, 0)
+visible = false
 mesh = SubResource("ArrayMesh_1ral6")
 skeleton = NodePath("")
+
+[node name="ui" type="RichTextLabel" parent="."]
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -63.0
+offset_right = 314.0
+theme_override_fonts/normal_font = ExtResource("2_qrf0h")
+theme_override_font_sizes/normal_font_size = 61
+text = "press  E"
+vertical_alignment = 2
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.679069, 0)

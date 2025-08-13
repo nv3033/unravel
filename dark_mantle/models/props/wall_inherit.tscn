@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bq73b4scjh410"]
+[gd_scene load_steps=5 format=3 uid="uid://bq73b4scjh410"]
 
 [ext_resource type="PackedScene" uid="uid://dyeevck28ox7p" path="res://models/props/wall.fbx" id="1_81o5h"]
 [ext_resource type="Texture2D" uid="uid://71x5l3w0atw2" path="res://models/locations/black-stacked-stones.jpg" id="2_ncoc1"]
@@ -7,7 +7,17 @@
 albedo_texture = ExtResource("2_ncoc1")
 texture_filter = 0
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_p3l6e"]
+size = Vector3(1, 0.246521, 0.258057)
+
 [node name="wall" instance=ExtResource("1_81o5h")]
 
 [node name="Cube" parent="." index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_y6lne")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube" index="0"]
+transform = Transform3D(3.97457, 0, 0, 0, 3.97457, 0, 0, 0, 3.97457, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube/StaticBody3D" index="0"]
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 1.77001e-05, 4.63868e-05)
+shape = SubResource("BoxShape3D_p3l6e")
